@@ -1,0 +1,205 @@
+﻿@model Mentoring.Web.Models.MyMenteesModel
+
+@{
+    ViewBag.Title = "My Mentees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.ProgramInProgress)
+{
+    <h2>My Mentees (@Model.ActiveMentees.Count())</h2>
+
+    if (Model.ActiveMentees.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveMentees.First().CurrentActivity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveMentees.First().SkillFocus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveMentees.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ActiveMentees.First().Email)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model.ActiveMentees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentActivity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillFocus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "MenteeDetails", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>You don't have any Active Mentee</p>
+    }
+}
+else
+{
+    <h2>Pending Approval Mentees (@Model.PendingMentees.Count())</h2>
+
+    if (Model.PendingMentees.Any())
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PendingMentees.First().CurrentActivity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PendingMentees.First().SkillFocus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PendingMentees.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PendingMentees.First().Email)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model.PendingMentees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentActivity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillFocus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Accept", "MentorAcceptMentee", new { id = item.Id }) |
+                        @Html.ActionLink("Reject", "MentorRejectMentee", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "MenteeDetails", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>There are no Pending Approval Mentees</p>
+    }
+
+    <h2>Accepted Mentees (@Model.AcceptedMentees.Count())</h2>
+
+    if (Model.AcceptedMentees.Count() > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.AcceptedMentees.First().CurrentActivity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AcceptedMentees.First().SkillFocus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AcceptedMentees.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AcceptedMentees.First().Email)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model.AcceptedMentees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentActivity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillFocus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "MenteeDetails", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>There are no Accepted Mentees</p>
+    }
+
+    <h2>Rejected Mentees (@Model.RejectedMentees.Count())</h2>
+
+    if (Model.RejectedMentees.Count() > 0)
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.RejectedMentees.First().CurrentActivity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RejectedMentees.First().SkillFocus)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RejectedMentees.First().Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RejectedMentees.First().Email)
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model.RejectedMentees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentActivity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillFocus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "MenteeDetails", new { id = item.Id })
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>There are no Rejected Mentees</p>
+    }
+}

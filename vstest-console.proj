@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Main">
+		<Message Text="Working Directory: $(WorkingDirectory)" />
+		<Message Text="VSTest Console Path: $(VSTestConsoleBinPath)" />
+		<ItemGroup>
+			<TestAssemblies Include="$(WorkingDirectory)\**\bin\Debug\*.Tests.dll"/>
+			<TestAssemblies Include="$(WorkingDirectory)\**\bin\Debug\*.Test.dll"/>
+		</ItemGroup>
+ 		<Exec Command="&quot;$(VSTestConsoleBinPath)&quot; @(TestAssemblies ->'&quot;%(RecursiveDir)%(Filename)%(Extension)&quot;', ' ')  /Logger:trx"> 
+			<Output TaskParameter="ExitCode" PropertyName="ExitCode" />
+		</Exec>
+ 	</Target>
+</Project>

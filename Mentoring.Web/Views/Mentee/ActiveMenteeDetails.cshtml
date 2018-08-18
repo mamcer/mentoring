@@ -1,0 +1,59 @@
+﻿@model Mentoring.Web.Models.MenteeModel
+
+@{
+    ViewBag.Title = "ActiveMenteeDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mentee Details</h2>
+
+<div>
+    <hr />
+    @{ var currentUser = (Mentoring.Web.Models.UserModel)Session["UserInfo"]; }
+    @if (currentUser.IsLoggedAs(Mentoring.Core.Enums.UserRoleCode.Career))
+    {
+        @Html.ActionLink("Remove Mentee", "Remove", new { id = Model.Id })
+    }
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            <a href="mailto:@Html.DisplayFor(model => model.Email)">@Html.DisplayFor(model => model.Email)</a>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrentActivity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillFocus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillFocus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mentor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mentor.Name)
+        </dd>
+    </dl>
+</div>

@@ -1,0 +1,85 @@
+﻿@model Mentoring.Web.Models.UserProfileModel
+
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.UserModel.NickName</h2>
+
+<div>
+    <hr />
+    <p>
+        @Html.ActionLink("Edit User Profile", "EditUserProfile")
+        @if (@Model.IsProgramRenewalEnabled)
+        {
+            <span>&nbsp;|&nbsp;</span> @Html.ActionLink("Program Renewal", "DefineProgramRenewal")
+        }
+        @if (@Model.IsLeaveProgramEnabled)
+        {
+            <span>&nbsp;|&nbsp;</span> @Html.ActionLink("Leave Program", "LeaveProgram")
+        }
+        <br />
+        <div class="row">
+            <div class="col-md-1"><img height="100" width="100" style="padding-top:5px" src="@Model.UserModel.AvatarUrl" /></div>
+            <div class="col-md-11">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.Name)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.Name)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.NickName)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.NickName)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.Email)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.Email)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.AvatarUrl)
+                    </dt>
+
+                    <dd>
+                        <a href="@Model.UserModel.AvatarUrl" target="_blank">@Model.UserModel.AvatarUrl</a>
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.JoinDate)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.JoinDate)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.Location)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.Location)
+                    </dd>
+
+                    <dt>
+                        @Html.DisplayNameFor(model => model.UserModel.Seniority)
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.UserModel.Seniority)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>

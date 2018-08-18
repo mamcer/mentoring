@@ -1,0 +1,77 @@
+﻿@using Mentoring.Core.Enums
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoring | @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    @{ var currentUser = (Mentoring.Web.Models.UserModel)Session["UserInfo"]; }
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Mentoring Program", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (currentUser.IsLoggedAs(UserRoleCode.Mentee))
+                    {
+                        <li>@Html.ActionLink("My Mentor", "MyMentor", "Mentor")</li>
+                    }
+                    @if (currentUser.IsLoggedAs(UserRoleCode.Mentor))
+                    {
+                        <li>@Html.ActionLink("My Info", "MyMentorInfo", "Mentor")</li>
+                        <li>@Html.ActionLink("My Mentees", "MyMentees", "Mentee")</li>
+                    }
+                    @if (currentUser.IsLoggedAs(UserRoleCode.Career))
+                    {
+                        <li>@Html.ActionLink("Mentors", "Summary", "Mentor")</li>
+                        <li>@Html.ActionLink("Mentees", "Summary", "Mentee")</li>
+                    }
+                </ul>
+
+                @foreach (var role in currentUser.Roles)
+                {
+                    if (role.Id == currentUser.CurrentRole.Id)
+                    {
+                        <p class="nav navbar-text navbar-right">@role.Description</p>
+                    }
+                    else
+                    {
+                        <p class="nav navbar-text navbar-right">@Html.ActionLink(role.Description, "ChangeLoggedAs", "Home", new { roleId = role.Id }, null)</p>
+                    }
+                }
+
+                @if (currentUser.IsLoggedAs(UserRoleCode.Career))
+                {
+                    <p class="nav navbar-text navbar-right">@Html.ActionLink("Administration", "Admin", "Home")</p>
+                }
+
+                <p class="nav navbar-text navbar-right">@Html.ActionLink(string.IsNullOrEmpty(currentUser.NickName) ? currentUser.Name : currentUser.NickName, "UserProfile", "Home")</p>
+                <img height="50" width="50" class="navbar-right" src="@(currentUser.AvatarUrl)" />
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year Mentoring Program - For further information contact us at <a href="mailto:people@company.com&subject=Mentoring">people@company.com</a></p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
