@@ -31,7 +31,6 @@ _ReSharper*/
 # Code coverage files
 coverage-report/
 open-cover.xml
-/open-cover.proj
 
 # Unit testing files
 /xunit-console.proj

@@ -1,0 +1,39 @@
+﻿@model Mentoring.Web.Models.AllMenteesCountModel
+
+@{
+    ViewBag.Title = "Mentees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+@Html.ActionLink("Summary", "Summary")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Pending Approval Mentees", "PendingApproval")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Mentees By Status", "ByStatus")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Inactive Mentees", "Inactive")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Rejected Mentees", "Rejected")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Pending Renewal Mentees", "PendingRenewal")
+
+
+<p>
+    @using (Html.BeginForm("ExportAllMentees", "Mentee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <input type="submit" name="Export" id="Export" value="Export All Mentees" class="btn btn-success" />
+    }
+</p>
+
+<h4>@Html.ActionLink("Pending Approval Mentees (" + @Model.PendingApproval + ")", "PendingApproval")</h4>
+
+<h4><a href="@Url.Action("ByStatus")#MenteesWithoutMentor">Mentors Without a Mentor (@Model.MenteesWithoutMentor)</a></h4>
+
+<h4><a href="@Url.Action("ByStatus")#MenteesWithMentor">Mentees With a Mentor (@Model.MenteesWithMentor)</a></h4>
+
+<h4>@Html.ActionLink("Inactive Mentees (" + @Model.Inactive + ")", "Inactive")</h4>
+
+<h4>@Html.ActionLink("Rejected Mentees (" + @Model.Rejected + ")", "Rejected")</h4>
+
+<h4>@Html.ActionLink("Pending Renewal Mentees (" + @Model.PendingRenewal + ")", "PendingRenewal")</h4>

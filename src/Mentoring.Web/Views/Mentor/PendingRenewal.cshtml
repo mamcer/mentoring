@@ -1,0 +1,75 @@
+﻿@model Mentoring.Web.Models.AllMentorsModel
+
+@{
+    ViewBag.Title = "Pending Renewal Mentors";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+@Html.ActionLink("Summary", "Summary")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Pending Approval Mentors", "PendingApproval")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Mentors By Status", "ByStatus")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Inactive Mentors", "Inactive")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Rejected Mentors", "Rejected")
+&nbsp;|&nbsp; 
+@Html.ActionLink("Pending Renewal Mentors", "PendingRenewal")
+
+<h2>Pending Renewal Mentors (@Model.PendingRenewal.Count())</h2>
+
+@if (Model.PendingRenewal.Any())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PendingRenewal.First().Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PendingRenewal.First().Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PendingRenewal.First().Topics)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model.PendingRenewal)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a href="mailto:@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a>
+                </td>
+                <td>
+                    @foreach (var topic in item.Topics)
+                    {
+                        <ul>
+                            @if (topic.Description == "Other")
+                            {
+                                <li>Other: @Html.DisplayFor(itemModel => item.OtherTopic)</li>
+                            }
+                            else
+                            {
+                                <li>@topic.Description</li>
+                            }
+                        </ul>
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "MentorDetails", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>There are no pending renewal Mentors</p>
+}

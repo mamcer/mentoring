@@ -3,46 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Core", "Mentoring.Core\Mentoring.Core.csproj", "{A8A9E36B-C557-4359-B9D7-F1EEA0C8DCBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Core", "src\Mentoring.Core\Mentoring.Core.csproj", "{A8A9E36B-C557-4359-B9D7-F1EEA0C8DCBE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{992CEF49-34E8-4F6A-A5F1-5C0EFF002692}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Web", "src\Mentoring.Web\Mentoring.Web.csproj", "{B680C5C6-4CF8-4778-81A9-A27FD9A40534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Data", "src\Mentoring.Data\Mentoring.Data.csproj", "{18F49D9D-C8AF-48EB-A2EA-551BF22C416F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Application", "src\Mentoring.Application\Mentoring.Application.csproj", "{450F863A-808C-4E9F-BA0A-4554B242AC8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting.Core", "src\Common\CrossCutting.Core\CrossCutting.Core.csproj", "{C9213684-EAB1-4C17-9313-534709C4FCB6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting.MainModule", "src\Common\CrossCutting.MainModule\CrossCutting.MainModule.csproj", "{CD7C9E78-0D7C-4B4E-8E5D-59459360B1B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.EmailService", "src\Mentoring.EmailService\Mentoring.EmailService.csproj", "{EED0A841-DA5D-4FB4-ADDF-8E7A4DE24DF2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Core.Test", "src\Mentoring.Core.Test\Mentoring.Core.Test.csproj", "{A2F17C1C-36DF-4F90-A67B-8892A54240C6}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Mentoring.Database", "src\Mentoring.Database\Mentoring.Database.sqlproj", "{76BD6F42-5989-46E3-9E6F-76EB7686E155}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions Items", "Solutions Items", "{A2842AE3-0B9A-4673-850F-8423CF66E25F}"
 	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
+		src\Common\Dev.Deployment.SetParameters.xml = src\Common\Dev.Deployment.SetParameters.xml
+		src\Common\GlobalAssemblyInfo.cs = src\Common\GlobalAssemblyInfo.cs
+		src\Common\Local.Deployment.SetParameters.xml = src\Common\Local.Deployment.SetParameters.xml
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{27EF38E0-8DC5-4906-B92C-26CD03D4B02B}"
-	ProjectSection(SolutionItems) = preProject
-		build.cmd = build.cmd
-		db.deploy.cmd = db.deploy.cmd
-		Common\Dev.Deployment.SetParameters.xml = Common\Dev.Deployment.SetParameters.xml
-		FXCop.ruleset = FXCop.ruleset
-		Common\GlobalAssemblyInfo.cs = Common\GlobalAssemblyInfo.cs
-		open.cover.cmd = open.cover.cmd
-		README.md = README.md
-		report.generator.cmd = report.generator.cmd
-		sonar-project.properties = sonar-project.properties
-		sonar.cmd = sonar.cmd
-		vstest.console.cmd = vstest.console.cmd
-		web.deploy.cmd = web.deploy.cmd
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Web", "Mentoring.Web\Mentoring.Web.csproj", "{B680C5C6-4CF8-4778-81A9-A27FD9A40534}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Data", "Mentoring.Data\Mentoring.Data.csproj", "{18F49D9D-C8AF-48EB-A2EA-551BF22C416F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Application", "Mentoring.Application\Mentoring.Application.csproj", "{450F863A-808C-4E9F-BA0A-4554B242AC8C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting.Core", "Common\CrossCutting.Core\CrossCutting.Core.csproj", "{C9213684-EAB1-4C17-9313-534709C4FCB6}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting.MainModule", "Common\CrossCutting.MainModule\CrossCutting.MainModule.csproj", "{CD7C9E78-0D7C-4B4E-8E5D-59459360B1B7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.EmailService", "Mentoring.EmailService\Mentoring.EmailService.csproj", "{EED0A841-DA5D-4FB4-ADDF-8E7A4DE24DF2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mentoring.Core.Test", "Mentoring.Core.Test\Mentoring.Core.Test.csproj", "{A2F17C1C-36DF-4F90-A67B-8892A54240C6}"
-EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Mentoring.Database", "Mentoring.Database\Mentoring.Database.sqlproj", "{76BD6F42-5989-46E3-9E6F-76EB7686E155}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +75,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
 		SolutionGuid = {BAF15489-406F-4DD4-9742-9FDA897B0277}
 	EndGlobalSection
 EndGlobal

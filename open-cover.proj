@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project DefaultTargets="Main" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="Main">
+		<Message Text="Working Directory: $(WorkingDirectory)" />
+		<Message Text="Open Cover Bin Path: $(OpenCoverBinPath)" />
+		<Message Text="MS Test Bin Path: $(MSTestBinPath)" />
+		<ItemGroup>
+			<TestAssemblies Include="$(WorkingDirectory)\**\bin\Debug\*.Tests.dll"/>
+			<TestAssemblies Include="$(WorkingDirectory)\**\bin\Debug\*.Test.dll"/>
+		</ItemGroup>
+		<!-- <Message Text="TestAssemblies: @(TestAssemblies, '$$')" /> -->
+		<!-- <Message Text="Test Files:  @(TestAssemblies ->'/testcontainer:&quot;%(RecursiveDir)%(Filename)%(Extension)&quot;', ' ')"/>  -->
+ 		<Exec Command="&quot;$(OpenCoverBinPath)&quot; -target:&quot;$(MSTestBinPath)&quot; @(TestAssemblies ->'-targetargs:/testcontainer:&quot;%(RecursiveDir)%(Filename)%(Extension)&quot;', ' ') -filter:&quot;+[*]* -[*.Tests]* -[*.Test]* -[*]*Mock -[Microsoft.*]*&quot; -output:$(WorkingDirectory)\open-cover.xml -register:user -mergebyhash -hideskipped:All -log:Verbose -skipautoprops"> 
+			<Output TaskParameter="ExitCode" PropertyName="ExitCode" />
+		</Exec>
+ 	</Target>
+</Project>

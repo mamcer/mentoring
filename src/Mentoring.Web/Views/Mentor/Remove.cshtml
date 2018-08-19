@@ -1,0 +1,38 @@
+﻿@model Mentoring.Web.Models.RemoveMentor
+
+@{
+    ViewBag.Title = "Remove Mentor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Remove Mentor</h2>
+
+@using (Html.BeginForm())
+{
+    <br />
+    <p>Are you sure to remove <strong>@Model.Name</strong> as a Mentor? This action cannot be undone.</p>
+    <br />
+
+    if (Model.MenteeNames.Count() > 0)
+    {
+        <p>This action will leave the following Mentee(s) without a Mentor:</p>
+
+        <ul>
+            @foreach (var menteeName in Model.MenteeNames)
+            {
+                <li>
+                    @menteeName
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p><i>This Mentor does not have any Mentee.</i></p>
+    }
+    <br />
+    <div>
+        <input type="submit" value="Remove Mentor" class="btn btn-danger" />
+        &nbsp; &nbsp;@Html.ActionLink("Cancel", "MentorDetails", new { id = @Model.Id })
+    </div>
+}

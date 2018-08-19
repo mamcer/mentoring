@@ -1,0 +1,38 @@
+﻿@model Mentoring.Web.Models.RejectedMenteeModel
+
+@{
+    ViewBag.Title = "Reject Mentee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reject Pending Approval Mentee</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>@ViewBag.UserName (@ViewBag.UserEmail)</h4>
+        <hr />
+        <blockquote>
+            <p style="font-size:small">This message is optional and if defined it will be included in the &lt;Optional Message&gt; section of the email below.</p>
+        </blockquote>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Send" class="btn btn-danger" />
+                &nbsp;&nbsp;@Html.ActionLink("Cancel", "PendingApproval")
+            </div>
+        </div>
+    </div>
+}
+
+<br />

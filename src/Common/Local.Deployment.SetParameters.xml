@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="Mentoring" />
+  <setParameter name="MentoringEntities" value="data source=192.168.1.100;initial catalog=mentoring;User Id=mentoring;Password=mentoring;MultipleActiveResultSets=True" />
+</parameters>
